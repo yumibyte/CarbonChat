@@ -1,0 +1,21 @@
+# Base ignore files
+.*.swp
+*.orig
+.flymake*
+.idea
+.DS_Store
+*.test
+.git/
+
+# Python ignore
+__pycache__/
+*.py[cod]
+*$py.class
+
+.cache
+.tox/
+*.mo
+*.pot
+*.log
+env/
+
