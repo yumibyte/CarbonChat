@@ -22,7 +22,7 @@ jobs:
           DOCKER_REGISTRY: containers.pkg.github.com
           REPO_PATH: ${{ steps.nwo.outputs.lowercase }}
       - name: Push to GPR
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login containers.pkg.github.com -u ${{github.actor}} --password-stdin
           docker push containers.pkg.github.com/${{ steps.nwo.outputs.lowercase }}/backend:latest
