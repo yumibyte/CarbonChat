@@ -21,3 +21,9 @@ This is our backend app deployed to heroku
 1. Source the .env file : `source ./backend/.env`
 1. Run : `docker run -it -p $PORT:$PORT --env-file ./backend/.env $DOCKER_REGISTRY/$REPO_PATH/backend:latest`
 1. Open a browser to the ping endpoint: `open http://0.0.0.0:5000/ping` 
+
+### Datasets Used
+State CO2 Emissions from Fossil Fuel Combustion --> https://www.epa.gov/statelocalenergy/state-co2-emissions-fossil-fuel-combustion
+
+Data on CO2 and Greenhouse Gas Emissions by Our World in Data -->
+https://github.com/owid/co2-data
