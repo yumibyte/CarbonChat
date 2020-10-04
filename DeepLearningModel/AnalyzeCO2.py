@@ -15,9 +15,13 @@ import pandas as pd
 def analyzeState():
     
     # make necessary variables global to be accessed in variable explorer
-    global datasetState, XState
+    global datasetState, XState, YState
 
     datasetState = pd.read_csv('StateCO2Dataset.csv')
-    XState = datasetState.iloc[2:308,2:30].values
+    
+    XState = datasetState.iloc[1, 2:]
+    
+    # contains all CO2 info under all subcategories and total for the state
+    YState = datasetState.iloc[2:308,2:30].values
     
 analyzeState()
