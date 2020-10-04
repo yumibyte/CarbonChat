@@ -38,7 +38,7 @@ jobs:
           cd web
           source ./.envapp
           echo "HEROKU_API_KEY=$HEROKU_API_KEY" >> .env
-          docker run --env-file ./.env containers.pkg.github.com/${{ steps.nwo.outputs.lowercase }}/web:latest heroku container:push web -a carbonchat
-          docker run --env-file ./.env containers.pkg.github.com/${{ steps.nwo.outputs.lowercase }}/web:latest heroku container:release web -a carbonchat
+          docker run --env-file ./.env $DOCKER_REGISTRY/${{ steps.nwo.outputs.lowercase }}/web:latest heroku container:push web -a carbonchat
+          docker run --env-file ./.env $DOCKER_REGISTRY/${{ steps.nwo.outputs.lowercase }}/web:latest heroku container:release web -a carbonchat
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
