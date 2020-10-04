@@ -1,0 +1,43 @@
+name: CarbonChat
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/ASzc/change-string-case-action
+      - uses: actions/checkout@v2
+      - id: nwo
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ github.repository }}
+      - name: Build containers
+        run: script/build-web.sh
+        env:
+          DOCKER_REGISTRY: docker.pkg.github.com
+          REPO_PATH: ${{ steps.nwo.outputs.lowercase }}
+          GIT_SHA: ${{ github.sha }}
+      - name: Push to GPR and Heroku
+        # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{github.actor}} --password-stdin
+          docker login --username=_ --password=${HEROKU_API_KEY} registry.heroku.com
+          docker push docker.pkg.github.com/${{ steps.nwo.outputs.lowercase }}/web:latest
+          docker tag docker.pkg.github.com/${{ steps.nwo.outputs.lowercase }}/web:latest registry.heroku.com/carbonchat/web:latest
+          docker push registry.heroku.com/carbonchat/web:latest
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      - name: Heroku Release
+        # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          cd web
+          source ./.envapp
+          echo "HEROKU_API_KEY=$HEROKU_API_KEY" >> .env
+          docker run --env-file ./.env $DOCKER_REGISTRY/${{ steps.nwo.outputs.lowercase }}/web:latest heroku container:release web -a carbonchat
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
