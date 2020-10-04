@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    return 'Welcome to CarbonChat !'
+    return 'Welcome to CarbonChat!'
 
 @app.route('/ping')
 def ping():

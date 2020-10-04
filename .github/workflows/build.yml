@@ -21,6 +21,7 @@ jobs:
         env:
           DOCKER_REGISTRY: containers.pkg.github.com
           REPO_PATH: ${{ steps.nwo.outputs.lowercase }}
+          GIT_SHA: ${{ github.sha }}
       - name: Push to GPR and Heroku
         # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |

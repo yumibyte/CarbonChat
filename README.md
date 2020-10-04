@@ -18,7 +18,4 @@ This is our backend app deployed to heroku
 ### Run it locally
 
 1. First build it, open a shell and navigate to the source of the repo
-1. Change folders : `cd ./web`
-1. Source the .env file : `source ./.envapp`
-1. Run : `docker run -it -p $PORT:$PORT --env-file ./.env $DOCKER_REGISTRY/$REPO_PATH/web:latest`
-1. Open a browser to the ping endpoint: `open http://0.0.0.0:$PORT/ping` 
+1. Run : `./script/dev-run.sh`

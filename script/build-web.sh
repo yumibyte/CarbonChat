@@ -7,4 +7,5 @@ set -e
 source './web/.envapp'
 
 docker build -t "${DOCKER_REGISTRY}/${REPO_PATH}/web:latest" \
+             --build-arg GIT_SHA=$GIT_SHA \
              -f web/Dockerfile ./web
