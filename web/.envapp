@@ -1,0 +1,10 @@
+#!/bin/usr/env bash
+PORT=5000
+DOCKER_REGISTRY="${DOCKER_REGISTRY:-docker.pkg.github.com}"
+REPO_PATH="${REPO_PATH:-$(whoami| tr '[:upper:]' '[:lower:]')/carbonchat}"
+GIT_SHA="${GIT_SHA:-$(git rev-parse --abbrev-ref HEAD)}"
+
+# Now output the values so we can run things
+echo "PORT=5000" > ./.env
+echo "DOCKER_REGISTRY=$DOCKER_REGISTRY" >> ./.env
+echo "REPO_PATH=$REPO_PATH" >> ./.env
