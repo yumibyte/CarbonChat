@@ -25,9 +25,20 @@ jobs:
         # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{github.actor}} --password-stdin
+          docker login --username=_ --password=${HEROKU_API_KEY} registry.heroku.com
           docker push containers.pkg.github.com/${{ steps.nwo.outputs.lowercase }}/backend:latest
           docker tag containers.pkg.github.com/${{ steps.nwo.outputs.lowercase }}/backend:latest registry.heroku.com/carbonchat/backend:latest
           docker push registry.heroku.com/carbonchat/backend:latest
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      - name: Heroku Release
+        # if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          cd backend
+          echo "HEROKU_API_KEY=\"$HEROKU_API_KEY\"" >> .env
+          docker run --env-file .env containers.pkg.github.com/${{ steps.nwo.outputs.lowercase }}/backend:latest heroku container:release backend
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       # - uses: akhileshns/heroku-deploy@v3.5.7 # This is the action
       #   with:
       #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}

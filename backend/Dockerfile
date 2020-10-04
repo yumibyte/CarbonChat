@@ -7,8 +7,10 @@ RUN apt-get -qq update && \
         python3 \
         python3-pip \
         bash && \
+        curl https://cli-assets.heroku.com/install-ubuntu.sh | sh && \
         pip3 --version && \
-        python3 --version
+        python3 --version && \
+        heroku --version
 
 # setup Python libs
 ADD ./app/requirements.txt /tmp/requirements.txt
