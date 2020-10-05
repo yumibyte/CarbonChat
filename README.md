@@ -9,6 +9,15 @@ See the predicted CO2 level for your current time
 
 ![image](https://user-images.githubusercontent.com/1907138/95049090-f41b6400-069d-11eb-9df9-c5e9d62417dc.png)
 
+The Polynomial regression model plus the linear regression model analsysis we can display the correlation between the year and CO2 increase:
+
+![image](https://user-images.githubusercontent.com/1907138/95049177-1d3bf480-069e-11eb-9c66-36574d6c12ea.png)
+
+
+At the tip of your fingers:
+
+![image](https://user-images.githubusercontent.com/1907138/95049441-9cc9c380-069e-11eb-98aa-d6986e98bd6f.png)
+
 
 ### Datasets Used
 State CO2 Emissions from Fossil Fuel Combustion --> https://www.epa.gov/statelocalenergy/state-co2-emissions-fossil-fuel-combustion
