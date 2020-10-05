@@ -58,47 +58,22 @@ struct ContentView: View {
     @State var carbonLevelTransportation = "80.3"
     @State var carbonLevelElectricPower = "100.8"
     
-
+    
     var body: some View {
         NavigationView {
             MapView()
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading:
             HStack {
-                Button(":Bound:") {
-                    self.mapBoundary.toggle()
-                    self.updateMapOverlayViews()
-                }
-                .foregroundColor(mapBoundary ? .white : .red)
-                .background(mapBoundary ? Color.green : Color.clear)
-
-                Button(":Overlay:") {
-                    self.mapOverlay.toggle()
-                    self.updateMapOverlayViews()
-                }
-                .foregroundColor(mapOverlay ? .white : .red)
-                .background(mapOverlay ? Color.green : Color.clear)
-
-                Button(":Pins:") {
+                
+                Button("TogglePins") {
                     self.mapPins.toggle()
                     self.updateMapOverlayViews()
                 }
                 .foregroundColor(mapPins ? .white : .red)
                 .background(mapPins ? Color.green : Color.clear)
 
-                Button(":Characters:") {
-                    self.mapCharacterLocation.toggle()
-                    self.updateMapOverlayViews()
-                }
-                .foregroundColor(mapCharacterLocation ? .white : .red)
-                .background(mapCharacterLocation ? Color.green : Color.clear)
-
-                Button(":Route:") {
-                    self.mapRoute.toggle()
-                    self.updateMapOverlayViews()
-                }
-                .foregroundColor(mapRoute ? .white : .red)
-                .background(mapRoute ? Color.green : Color.clear)
+                
             }
         )
     }
@@ -110,25 +85,26 @@ struct ContentView: View {
 
     func addCateogoryPins() {
     // 1
+
         var stateInformationCalifornia = [
             ["name": "Commercial",
-             "location": "{34,-118.60089}",
+             "location": "{-35.259253,174.068681}",
              "type": "1",
              "subtitle": carbonLevelCommercial],
             ["name": "Industrial",
-             "location": "{36,-118.60089}",
+             "location": "{-35.259253,173.5}",
              "type": "1",
              "subtitle": carbonLevelIndustrial],
             ["name": "Residential",
-             "location": "{32,-125.60089}",
+             "location": "{-35.259253,173.3}",
              "type": "1",
              "subtitle": carbonLevelResidential],
             ["name": "Transportation",
-             "location": "{35,-125.60089}",
+             "location": "{-35.259253,174.2}",
              "type": "1",
              "subtitle": carbonLevelTransportation],
             ["name": "Electric Power",
-             "location": "{38.42581,-125.60089}",
+             "location": "{-35.0,173.5}",
              "type": "1",
              "subtitle": carbonLevelElectricPower]
         ]
@@ -137,16 +113,24 @@ struct ContentView: View {
 //            [[String: String]] else { return }
 
         // 2
-        for category in stateInformationCalifornia {
-            let coordinate: CLLocationCoordinate2D = Category.parseCoord(dict: category, fieldName: "location")
-            let title: String = category["name"] as! String
-            let typeRawValue: Int = 1
-            let type: CategoryType = CategoryType(rawValue: typeRawValue) ?? .misc
-            let subtitle: String = category["subtitle"]!
-            // 3
-            let annotation = CategoryAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type)
-            
-            mapView.addAnnotation(annotation)
+        
+        NetworkManager().fetchPing { (pingdata) in
+            print(pingdata.datetime)
+//              DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//              }
+        
+            for category in stateInformationCalifornia {
+                let coordinate: CLLocationCoordinate2D = Category.parseCoord(dict: category, fieldName: "location")
+                let title: String = category["name"] as! String
+                let typeRawValue: Int = 1
+                let type: CategoryType = CategoryType(rawValue: typeRawValue) ?? .misc
+                let subtitle: String = category["subtitle"]!
+                // 3
+                let annotation = CategoryAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type)
+                
+                mapView.addAnnotation(annotation)
+            }
         }
     }
 
@@ -173,4 +157,5 @@ struct ContentView: View {
         if mapRoute { addRoute() }
     }
 }
+
 
