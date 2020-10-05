@@ -9,6 +9,7 @@ Created on Sun Oct  4 20:40:39 2020
 # Polynomial Regression
 
 # Importing the libraries
+from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -17,7 +18,8 @@ from sklearn.preprocessing import PolynomialFeatures
 import os
 
 
-def callPolyModel(dateindex):
+def callPolyModel():
+
     # Importing the dataset
     dataset = pd.read_csv(os.path.join(
         os.environ['CARBONCHAT_DATA'], 'FinalDatasetNZ_1.csv'))
@@ -29,41 +31,56 @@ def callPolyModel(dateindex):
     lin_reg.fit(X, y)
 
     # Training the Polynomial Regression model on the whole dataset
-    poly_reg = PolynomialFeatures(degree = 4)
+    poly_reg = PolynomialFeatures(degree=4)
     X_poly = poly_reg.fit_transform(X)
     lin_reg_2 = LinearRegression()
     lin_reg_2.fit(X_poly, y)
-
+        
     # Visualising the Linear Regression results
-    plt.scatter(X, y, color = 'red')
-    plt.plot(X, lin_reg.predict(X), color = 'blue')
+    plt.scatter(X, y, color='red')
+    plt.plot(X, lin_reg.predict(X), color='blue')
     plt.title('CO2 Prediction Based on Year')
     plt.xlabel('Year')
     plt.ylabel('CO2 (ppm)')
     plt.show()
-
+    
     # Visualising the Polynomial Regression results
-    plt.scatter(X, y, color = 'red')
-    plt.plot(X, lin_reg_2.predict(poly_reg.fit_transform(X)), color = 'blue')
+    plt.scatter(X, y, color='red')
+    plt.plot(X, lin_reg_2.predict(poly_reg.fit_transform(X)), color='blue')
     plt.title('CO2 Prediction Based on Year')
     plt.xlabel('Year')
     plt.ylabel('CO2 (ppm)')
     plt.show()
-
+    
     # Visualising the Polynomial Regression results (for higher resolution and smoother curve)
     X_grid = np.arange(2015, 2020, 0.1)
     X_grid = X_grid.reshape((len(X_grid), 1))
-    plt.scatter(X, y, color = 'red')
-    plt.plot(X_grid, lin_reg_2.predict(poly_reg.fit_transform(X_grid)), color = 'blue')
+    plt.scatter(X, y, color='red')
+    plt.plot(X_grid, lin_reg_2.predict(
+    poly_reg.fit_transform(X_grid)), color='blue')
     plt.title('CO2 Prediction Based on Year')
     plt.xlabel('Year')
     plt.ylabel('CO2 (ppm)')
     plt.show()
 
-    # Predicting a new result with Linear Regression
-    # lin_reg.predict([[6.5]])
-    lin_reg.predict([[dateindex]])
+    # datetime object containing current date and time
+    now = datetime.now()
 
-    # Predicting a new result with Polynomial Regression
-    # lin_reg_2.predict(poly_reg.fit_transform([[6.5]]))
-    return lin_reg_2.predict(poly_reg.fit_transform([[dateindex]]))
+    print("now =", now)
+
+    # dd/mm/YY H:M:S
+    year = float(now.strftime("%Y"))
+    month = float(now.strftime("%m")) / 12
+    day = float(now.strftime("%d")) / 12 / 34
+    hour = float(now.strftime("%H")) / 12 / 34 / 60
+    minute = float(now.strftime("%M")) / 12 / 34 / 60 / 60
+    second = float(now.strftime("%S")) / 12 / 34 / 60 / 60 / 60
+
+    currentTimeDecimal = year + month + day + hour + minute + second
+    # Predicting a new result with Linear Regression
+    #lin_reg.predict([[currentTimeDecimal]])
+
+# Predicting a new result with Polynomial Regression
+    return lin_reg_2.predict(poly_reg.fit_transform([[currentTimeDecimal]]))[0]
+
+print(callPolyModel())
