@@ -1,5 +1,6 @@
 import os
 
+from lib.AnalyzeCO2 import analyzeState
 from flask import Flask
 from flask import jsonify
 from datetime import datetime
@@ -19,6 +20,14 @@ def ping():
         datetime=datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
         gitsha=gitsha_data
     )
+
+@app.route('/analyzeCO2')
+def analyzeCO2():
+    return jsonify({'result':analyzeState()})
+
+@app.route('/polymodel')
+def polymodel():
+    return jsonify({'result': callPolyModel(6.5)}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
