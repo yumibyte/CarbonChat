@@ -17,6 +17,8 @@
 		16B0DB5D2529875400A27629 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B0DB5C2529875400A27629 /* Preview Assets.xcassets */; };
 		16B0DB682529875400A27629 /* CarbonChatAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B0DB672529875400A27629 /* CarbonChatAppTests.swift */; };
 		16B0DB732529875400A27629 /* CarbonChatAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B0DB722529875400A27629 /* CarbonChatAppUITests.swift */; };
+		41A50707252AB55300686B24 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A50706252AB55300686B24 /* NetworkManager.swift */; };
+		41A5070C252AB5CA00686B24 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A5070B252AB5CA00686B24 /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		16B0DB6E2529875400A27629 /* CarbonChatAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarbonChatAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16B0DB722529875400A27629 /* CarbonChatAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonChatAppUITests.swift; sourceTree = "<group>"; };
 		16B0DB742529875400A27629 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41A50706252AB55300686B24 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		41A5070B252AB5CA00686B24 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 			children = (
 				16B0DB552529875200A27629 /* CarbonChatAppApp.swift */,
 				16A20BD5252A2E190049B2F7 /* ContentView.swift */,
+				41A50706252AB55300686B24 /* NetworkManager.swift */,
+				41A5070B252AB5CA00686B24 /* Data.swift */,
 				16A20BE1252A36A30049B2F7 /* Category.swift */,
 				16A20BC1252A1A3F0049B2F7 /* CategoryAnnotation.swift */,
 				16A20BC6252A1AFE0049B2F7 /* CategoryAnnotationView.swift */,
@@ -272,6 +278,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41A5070C252AB5CA00686B24 /* Data.swift in Sources */,
+				41A50707252AB55300686B24 /* NetworkManager.swift in Sources */,
 				16A20BD6252A2E190049B2F7 /* ContentView.swift in Sources */,
 				16A20BE2252A36A30049B2F7 /* Category.swift in Sources */,
 				16B0DB562529875200A27629 /* CarbonChatAppApp.swift in Sources */,
