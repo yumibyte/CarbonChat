@@ -1,6 +1,6 @@
 ## CarbonChat
 
-This is the home for [our teams](https://2020.spaceappschallenge.org/challenges/inform/carbon-footprint/teams/carbon-chat/stream) project.
+This is the home for [our teams](https://2020.spaceappschallenge.org/challenges/inform/carbon-footprint/teams/carbon-chat/project) project.
 
 We are working on the [NASA International Space Apps Challenge](https://2020.spaceappschallenge.org/) :tada:
 
