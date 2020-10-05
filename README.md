@@ -16,7 +16,7 @@ The Polynomial regression model plus the linear regression model analsysis we ca
 
 At the tip of your fingers:
 
-![image](https://user-images.githubusercontent.com/1907138/95049490-b23eed80-069e-11eb-9716-69884348e1ad.png)
+![image](https://user-images.githubusercontent.com/1907138/95049579-e1edf580-069e-11eb-8210-6e8ad454cf01.png)
 
 
 ### Datasets Used
