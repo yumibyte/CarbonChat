@@ -65,40 +65,15 @@ struct ContentView: View {
                 .navigationBarTitle("", displayMode: .inline)
                 .navigationBarItems(leading:
             HStack {
-                Button(":Bound:") {
-                    self.mapBoundary.toggle()
-                    self.updateMapOverlayViews()
-                }
-                .foregroundColor(mapBoundary ? .white : .red)
-                .background(mapBoundary ? Color.green : Color.clear)
-
-                Button(":Overlay:") {
-                    self.mapOverlay.toggle()
-                    self.updateMapOverlayViews()
-                }
-                .foregroundColor(mapOverlay ? .white : .red)
-                .background(mapOverlay ? Color.green : Color.clear)
-
-                Button(":Pins:") {
+                
+                Button("TogglePins") {
                     self.mapPins.toggle()
                     self.updateMapOverlayViews()
                 }
                 .foregroundColor(mapPins ? .white : .red)
                 .background(mapPins ? Color.green : Color.clear)
 
-                Button(":Characters:") {
-                    self.mapCharacterLocation.toggle()
-                    self.updateMapOverlayViews()
-                }
-                .foregroundColor(mapCharacterLocation ? .white : .red)
-                .background(mapCharacterLocation ? Color.green : Color.clear)
-
-                Button(":Route:") {
-                    self.mapRoute.toggle()
-                    self.updateMapOverlayViews()
-                }
-                .foregroundColor(mapRoute ? .white : .red)
-                .background(mapRoute ? Color.green : Color.clear)
+                
             }
         )
     }
