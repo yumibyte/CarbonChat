@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
-dataset = pd.read_csv('ChathamNZ3Columns.csv')
+dataset = pd.read_csv('FinalDatasetNZ_1.csv')
 X = dataset.iloc[:, 1:-1].values
 y = dataset.iloc[:, -1].values
 
@@ -56,8 +56,24 @@ plt.xlabel('Year')
 plt.ylabel('CO2 (ppm)')
 plt.show()
 
+from datetime import datetime
+
+# datetime object containing current date and time
+now = datetime.now()
+ 
+print("now =", now)
+
+# dd/mm/YY H:M:S
+year = float(now.strftime("%Y"))
+month = float(now.strftime("%m")) / 12
+day = float(now.strftime("%d")) / 12 / 34
+hour = float(now.strftime("%H")) / 12 / 34 / 60
+minute = float(now.strftime("%M")) / 12 / 34 / 60 / 60
+second = float(now.strftime("%S")) / 12 / 34 / 60 / 60 / 60
+
+currentTimeDecimal = year + month + day + hour + minute + second
 # Predicting a new result with Linear Regression
-lin_reg.predict([[6.5]])
+#lin_reg.predict([[currentTimeDecimal]])
 
 # Predicting a new result with Polynomial Regression
-lin_reg_2.predict(poly_reg.fit_transform([[6.5]]))
+lin_reg_2.predict(poly_reg.fit_transform([[currentTimeDecimal]]))
