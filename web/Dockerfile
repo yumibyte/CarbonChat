@@ -21,15 +21,23 @@ RUN pip3 install --no-cache-dir -q -r /tmp/requirements.txt
 RUN useradd -m carbonchat
 RUN mkdir -p /opt/carbonchat && \
     chown -R carbonchat /opt/carbonchat && \
-    chmod -R 744 /opt/carbonchat
+    chmod -R 744 /opt/carbonchat && \
+    # careate data
+    mkdir -p /opt/carbonchat-data && \
+    chown -R carbonchat /opt/carbonchat-data && \
+    chmod -R 744 /opt/carbonchat-data
+
+ENV CARBONCHAT_DATA=/opt/carbonchat-data
+ENV CARBONCHAT_HOME=/opt/carbonchat
 
 USER carbonchat
 
-ADD app /opt/carbonchat
-WORKDIR /opt/carbonchat
+ADD app $CARBONCHAT_HOME
+ADD data $CARBONCHAT_DATA
+WORKDIR $CARBONCHAT_HOME
 
 # setup gitsha
-RUN echo "$GIT_SHA" > /opt/carbonchat/gitsha.txt
+RUN echo "$GIT_SHA" > $CARBONCHAT_HOME/gitsha.txt
 
 # EXPOSE 5000
 # default should be 5000
