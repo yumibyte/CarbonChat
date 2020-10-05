@@ -19,7 +19,6 @@ import os
 
 
 def callPolyModel():
-
     # Importing the dataset
     dataset = pd.read_csv(os.path.join(
         os.environ['CARBONCHAT_DATA'], 'FinalDatasetNZ_1.csv'))
