@@ -63,6 +63,7 @@ daysList = []
 hoursList = []
 minutesList = []
 secondsList = []
+finalTimeList = []
 
 # retrieve values for date, xco2, lat, long, uncertainty, and location for each 30,000 piece of data in each file in this directory
 for file in file_list:
@@ -108,14 +109,20 @@ for date in datesList:
     minutesList.append(date[4])
     secondsList.append(date[5])
 
+timeList = zip(yearsList, monthsList, daysList, hoursList, minutesList, secondsList)
+for time in timeList:
+    timeValue = time[0] + time[1] / 12 + time[2] / 31 + time[3] / 24 + time[4] / 60 + time[5] / 60
+    finalTimeList.append(timeValue)
+    
+
 # combine all lists into one list to be zipped
-finalDataList = tuple(zip(yearsList, monthsList, daysList, hoursList, minutesList, secondsList, localityList, largerAreaList, countryList, latitudeList, longitudeList, uncertaintyList, xco2List))
+finalDataList = tuple(zip(finalTimeList, localityList, largerAreaList, countryList, latitudeList, longitudeList, uncertaintyList, xco2List))
 print(finalDataList)
 
 # write to excel file
 
 def Write_xlsx(fileName, data):
-    DB_columns = ['year', 'month', 'day', 'hour', 'minute', 'second', 'locality', 'largerArea', 'country', 'lat', 'long', 'uncertainty', 'CO2']
+    DB_columns = ['time', 'locality', 'largerArea', 'country', 'lat', 'long', 'uncertainty', 'CO2']
 
     df = DataFrame(data, columns=DB_columns)
     df.to_excel(fileName, index=False)
