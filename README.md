@@ -20,10 +20,7 @@ At the tip of your fingers:
 
 
 ### Datasets Used
-State CO2 Emissions from Fossil Fuel Combustion --> https://www.epa.gov/statelocalenergy/state-co2-emissions-fossil-fuel-combustion
-
-Data on CO2 and Greenhouse Gas Emissions by Our World in Data -->
-https://github.com/owid/co2-data
+GES DISC --> https://disc.gsfc.nasa.gov/datasets/OCO2_L2_Lite_FP_9r/summary?keywords=OCO-2
 
 ## Backend
 
