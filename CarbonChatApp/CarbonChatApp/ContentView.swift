@@ -58,7 +58,7 @@ struct ContentView: View {
     @State var carbonLevelTransportation = "80.3"
     @State var carbonLevelElectricPower = "100.8"
     
-
+    
     var body: some View {
         NavigationView {
             MapView()
@@ -110,6 +110,7 @@ struct ContentView: View {
 
     func addCateogoryPins() {
     // 1
+
         var stateInformationCalifornia = [
             ["name": "Commercial",
              "location": "{34,-118.60089}",
@@ -137,16 +138,24 @@ struct ContentView: View {
 //            [[String: String]] else { return }
 
         // 2
-        for category in stateInformationCalifornia {
-            let coordinate: CLLocationCoordinate2D = Category.parseCoord(dict: category, fieldName: "location")
-            let title: String = category["name"] as! String
-            let typeRawValue: Int = 1
-            let type: CategoryType = CategoryType(rawValue: typeRawValue) ?? .misc
-            let subtitle: String = category["subtitle"]!
-            // 3
-            let annotation = CategoryAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type)
-            
-            mapView.addAnnotation(annotation)
+        
+        NetworkManager().fetchPing { (pingdata) in
+            print(pingdata.datetime)
+//              DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//              }
+        
+            for category in stateInformationCalifornia {
+                let coordinate: CLLocationCoordinate2D = Category.parseCoord(dict: category, fieldName: "location")
+                let title: String = category["name"] as! String
+                let typeRawValue: Int = 1
+                let type: CategoryType = CategoryType(rawValue: typeRawValue) ?? .misc
+                let subtitle: String = category["subtitle"]!
+                // 3
+                let annotation = CategoryAnnotation(coordinate: coordinate, title: title, subtitle: subtitle, type: type)
+                
+                mapView.addAnnotation(annotation)
+            }
         }
     }
 
@@ -173,4 +182,5 @@ struct ContentView: View {
         if mapRoute { addRoute() }
     }
 }
+
 
