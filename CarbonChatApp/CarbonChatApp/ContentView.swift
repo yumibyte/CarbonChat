@@ -113,23 +113,23 @@ struct ContentView: View {
 
         var stateInformationCalifornia = [
             ["name": "Commercial",
-             "location": "{-47.14105606,-152.180069}",
+             "location": "{-35.259253,174.068681}",
              "type": "1",
              "subtitle": carbonLevelCommercial],
             ["name": "Industrial",
-             "location": "{-47.6,-152.180069}",
+             "location": "{-35.259253,173.5}",
              "type": "1",
              "subtitle": carbonLevelIndustrial],
             ["name": "Residential",
-             "location": "{-48,-152.180069}",
+             "location": "{-35.259253,173.3}",
              "type": "1",
              "subtitle": carbonLevelResidential],
             ["name": "Transportation",
-             "location": "{-48.5,-125.60089}",
+             "location": "{-35.259253,174.2}",
              "type": "1",
              "subtitle": carbonLevelTransportation],
             ["name": "Electric Power",
-             "location": "{-49,-125.60089}",
+             "location": "{-35.0,173.5}",
              "type": "1",
              "subtitle": carbonLevelElectricPower]
         ]
